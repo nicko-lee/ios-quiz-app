@@ -35,7 +35,7 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="AnswerCell" rowHeight="100" id="qVC-IS-2ok">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="AnswerCell" rowHeight="100" id="qVC-IS-2ok">
                                                 <rect key="frame" x="0.0" y="28" width="374" height="100"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="qVC-IS-2ok" id="cPi-GU-BJy">
@@ -43,10 +43,10 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" placeholderIntrinsicWidth="334" placeholderIntrinsicHeight="59.5" translatesAutoresizingMaskIntoConstraints="NO" id="eN0-bL-LYk">
-                                                            <rect key="frame" x="20" y="20" width="334" height="59.5"/>
+                                                            <rect key="frame" x="20" y="0.0" width="334" height="79.5"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tUn-nY-FF7">
-                                                                    <rect key="frame" x="30" y="30" width="42" height="20.5"/>
+                                                                    <rect key="frame" x="30" y="30" width="274" height="19.5"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
@@ -56,14 +56,14 @@
                                                             <constraints>
                                                                 <constraint firstItem="tUn-nY-FF7" firstAttribute="leading" secondItem="eN0-bL-LYk" secondAttribute="leading" constant="30" id="I9G-Jq-Z6Z"/>
                                                                 <constraint firstAttribute="bottom" secondItem="tUn-nY-FF7" secondAttribute="bottom" constant="30" id="VsI-2J-oZi"/>
-                                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="tUn-nY-FF7" secondAttribute="trailing" constant="20" symbolic="YES" id="ciQ-et-k06"/>
+                                                                <constraint firstAttribute="trailing" secondItem="tUn-nY-FF7" secondAttribute="trailing" constant="30" id="ciQ-et-k06"/>
                                                                 <constraint firstItem="tUn-nY-FF7" firstAttribute="top" secondItem="eN0-bL-LYk" secondAttribute="top" constant="30" id="hJJ-qH-d7Y"/>
                                                             </constraints>
                                                         </view>
                                                     </subviews>
                                                     <constraints>
                                                         <constraint firstAttribute="bottom" secondItem="eN0-bL-LYk" secondAttribute="bottom" constant="20" id="IzT-hT-d3a"/>
-                                                        <constraint firstItem="eN0-bL-LYk" firstAttribute="top" secondItem="cPi-GU-BJy" secondAttribute="top" constant="20" id="P9r-pc-vQd"/>
+                                                        <constraint firstItem="eN0-bL-LYk" firstAttribute="top" secondItem="cPi-GU-BJy" secondAttribute="top" id="P9r-pc-vQd"/>
                                                         <constraint firstAttribute="trailing" secondItem="eN0-bL-LYk" secondAttribute="trailing" constant="20" id="ghA-D2-WDg"/>
                                                         <constraint firstItem="eN0-bL-LYk" firstAttribute="leading" secondItem="cPi-GU-BJy" secondAttribute="leading" constant="20" id="rSy-Gc-6Td"/>
                                                     </constraints>

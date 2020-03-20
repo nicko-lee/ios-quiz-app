@@ -17,6 +17,7 @@ class ViewController: UIViewController, QuizProtocol, UITableViewDataSource, UIT
     var model = QuizModel()
     var questions = [Question]()
     var questionIndex = 0 // keeps track of what question the user is currently viewing and answering
+    var numCorrect = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +32,21 @@ class ViewController: UIViewController, QuizProtocol, UITableViewDataSource, UIT
         model.delegate = self // self refers to the VC of course
         model.getQuestions()
     }
+    
+    func displayQuestion() {
+        
+        // Check the current question index is not beyond the bounds of the question array (otherwise we will get a crash)
+        guard questionIndex < questions.count else {
+            print("Trying to display a question index that is out of bounds")
+            return
+        }
+        
+        // If it is within the bounds then display the question
+        questionLabel.text = questions[questionIndex].question!
+        
+        // Display the answers - simply need to tell the table view to reload the data
+        tableView.reloadData() // just like what I used in Match App to reload my cards in the collection view. This triggers the table view to ask the VC for data again (i.e. those 2 protocol method calls. Ask for how many rows there are and for each row it is trying to display what cell should it use?)
+    }
 
     // MARK: QuizProtocol method
     
@@ -39,8 +55,9 @@ class ViewController: UIViewController, QuizProtocol, UITableViewDataSource, UIT
         // Set our question prop with questions from quiz model
         self.questions = questions
         
-        // Tell the table view to reload the data
-        tableView.reloadData() // just like what I used in Match App to reload my cards in the collection view. This triggers the table view to ask the VC for data again (i.e. those 2 protocol method calls. Ask for how many rows there are and for each row it is trying to display what cell should it use?)
+        // Display the first question
+        displayQuestion()
+        
     }
     
     // MARK: TableView Protocol methods
@@ -63,12 +80,26 @@ class ViewController: UIViewController, QuizProtocol, UITableViewDataSource, UIT
         let label = cell.viewWithTag(1) as! UILabel
         
         // TODO: Set the text for the label
+        label.text = questions[questionIndex].answers![indexPath.row]
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        
+        print("user tapped me at \(indexPath)")
+        
         // User has selected an answer
+        if questions[questionIndex].correctAnswerIndex! == indexPath.row {
+            // User has selected correct answer
+            numCorrect += 1
+        } else {
+            // User has selected the wrong answer
+        }
+        
+        // Increment questionIndex so we can jump to next question
+        questionIndex += 1
+        displayQuestion()
     }
 
 }

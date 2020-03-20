@@ -6,6 +6,12 @@
         "feedback": "var is the keyword used to declare a new variable." 
     },
     {
+        "question":"Test question with really long answer to see if it resizes?",
+        "answers":["var", "v", "variableasdfasdfasfadsf asgasgda a gasg asf asga afdlkldafkljafkjfadsljdla falfjal falfjadsjf a aldfalfadlfjalkdfldafjalkfjladkfjdasjfldljkafj"],
+        "correctAnswerIndex": 0,
+        "feedback": "var is the keyword used to declare a new variable."
+    },
+    {
         "question":"What's the keyword for declaring a new constant?",
         "answers":["constant", "let", "con"],
         "correctAnswerIndex": 1,
