@@ -14,6 +14,7 @@
 		AC1B33B12423780300650DCA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC1B33AF2423780300650DCA /* LaunchScreen.storyboard */; };
 		AC1B33B92423782200650DCA /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1B33B82423782200650DCA /* Question.swift */; };
 		AC1B33BB2423789100650DCA /* QuizModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1B33BA2423789100650DCA /* QuizModel.swift */; };
+		AC1B33BD2424739E00650DCA /* QuestionData.json in Resources */ = {isa = PBXBuildFile; fileRef = AC1B33BC2424739D00650DCA /* QuestionData.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		AC1B33B22423780300650DCA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AC1B33B82423782200650DCA /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
 		AC1B33BA2423789100650DCA /* QuizModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizModel.swift; sourceTree = "<group>"; };
+		AC1B33BC2424739D00650DCA /* QuestionData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = QuestionData.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +63,7 @@
 				AC1B33A6242377F500650DCA /* AppDelegate.swift */,
 				AC1B33A8242377F500650DCA /* ViewController.swift */,
 				AC1B33B82423782200650DCA /* Question.swift */,
+				AC1B33BC2424739D00650DCA /* QuestionData.json */,
 				AC1B33BA2423789100650DCA /* QuizModel.swift */,
 				AC1B33AA242377F500650DCA /* Main.storyboard */,
 				AC1B33AD2423780300650DCA /* Assets.xcassets */,
@@ -131,6 +134,7 @@
 				AC1B33B12423780300650DCA /* LaunchScreen.storyboard in Resources */,
 				AC1B33AE2423780300650DCA /* Assets.xcassets in Resources */,
 				AC1B33AC242377F500650DCA /* Main.storyboard in Resources */,
+				AC1B33BD2424739E00650DCA /* QuestionData.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
