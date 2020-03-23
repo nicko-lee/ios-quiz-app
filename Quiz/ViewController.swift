@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, QuizProtocol, UITableViewDataSource, UITableViewDelegate {
+class ViewController: UIViewController, QuizProtocol, UITableViewDataSource, UITableViewDelegate, ResultViewControllerProtocol {
     
     @IBOutlet weak var questionLabel: UILabel!
     
@@ -19,9 +19,17 @@ class ViewController: UIViewController, QuizProtocol, UITableViewDataSource, UIT
     var questionIndex = 0 // keeps track of what question the user is currently viewing and answering
     var numCorrect = 0
     
+    var resultVC: ResultViewController?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        // We want to later display the modal popup message. To do this we first need to create an instance of the result VC. We will instantiate the one we aleady customised in the storyboard
+        resultVC = storyboard?.instantiateViewController(withIdentifier: "ResultVC") as? ResultViewController // This returns an instance of the VC from the storyboard but it doesn't know what type of VC it is so we need to cast it to the type we want. Note resultVC may or may not be nil depending on a couple of things. If storyboard is nil none of this will run. And if it can't cast it as a Result VC then the resultVC var will also be nil
+        
+        resultVC?.delegate = self
+        resultVC?.modalPresentationStyle = .overCurrentContext
         
         // Conform to the table view protocols
         tableView.dataSource = self
@@ -85,22 +93,80 @@ class ViewController: UIViewController, QuizProtocol, UITableViewDataSource, UIT
         return cell
     }
     
+    // This is triggered when the user selects an answer
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         
+        // Check against question index being out of bounds
+        guard questionIndex < questions.count else {
+            return
+        }
+        
         print("user tapped me at \(indexPath)")
+        
+        // Declare vars to configure the popup
+        var title: String = ""
+        var message: String = questions[questionIndex].feedback!
+        var action: String = "Next"
         
         // User has selected an answer
         if questions[questionIndex].correctAnswerIndex! == indexPath.row {
             // User has selected correct answer
             numCorrect += 1
+            
+            // Set the title for the popup
+            title = "Correct!"
         } else {
             // User has selected the wrong answer
+            
+            // Set the title for the popup
+            title = "Wrong!"
+        }
+        
+        
+        
+        // Therefore before we can use resultVC we need to check it isn't nil. If not nil will display it over top of current VC
+        if resultVC != nil {
+            
+            present(resultVC!, animated: true) {
+                // Set the message for the popup
+                self.resultVC!.setPopup(withTitle: title, withMessage: message, withAction: action)
+            }
         }
         
         // Increment questionIndex so we can jump to next question
         questionIndex += 1
-        displayQuestion()
     }
+    
+    // MARK: ResultViewControllerProtocol methods
+    
+    func resultViewDismissed() {
+        
+        // Check the question index
+        
+        // If the question index == question count then we've finished the last question
+        if questionIndex == questions.count {
+            
+            // Show summary
+            if resultVC != nil {
+                present(resultVC!, animated: true) {
+                    self.resultVC?.setPopup(withTitle: "Summary", withMessage: "You got \(self.numCorrect) out of \(self.questions.count) correct.", withAction: "Restart")
+                }
+            }
+            
+            questionIndex += 1
+        } else if questionIndex > questions.count {
+            
+            // Restart the quiz
+            numCorrect = 0
+            questionIndex = 0
+            displayQuestion()
+            
+        } else {
+            // Display the next question when the result view has been dismissed
+            displayQuestion()
+        }
+    }
+    
 
 }
 
