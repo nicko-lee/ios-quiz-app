@@ -13,7 +13,7 @@ class ViewController: UIViewController, QuizProtocol, UITableViewDataSource, UIT
     @IBOutlet weak var questionLabel: UILabel!
     
     @IBOutlet weak var tableView: UITableView!
-    
+
     var model = QuizModel()
     var questions = [Question]()
     var questionIndex = 0 // keeps track of what question the user is currently viewing and answering
@@ -63,6 +63,19 @@ class ViewController: UIViewController, QuizProtocol, UITableViewDataSource, UIT
         // Set our question prop with questions from quiz model
         self.questions = questions
         
+        // Check if there is a stored state
+        let qIndex = StateManager.retrieveValue(key: StateManager.questionIndexKey) as? Int
+        
+        // Check if it's nil. If not, check if it's a valid index (i.e. within the count of [Questions])
+        if qIndex != nil && qIndex! < questions.count {
+            
+            // Set the current index to the restored index
+            questionIndex = qIndex!
+            
+            // Restore the num correct
+            numCorrect = StateManager.retrieveValue(key: StateManager.numCorrectKey) as! Int
+        }
+        
         // Display the first question
         displayQuestion()
         
@@ -93,8 +106,8 @@ class ViewController: UIViewController, QuizProtocol, UITableViewDataSource, UIT
         return cell
     }
     
-    // This is triggered when the user selects an answer
-    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+    // This is triggered when the user selects an answer    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         // Check against question index being out of bounds
         guard questionIndex < questions.count else {
@@ -105,8 +118,8 @@ class ViewController: UIViewController, QuizProtocol, UITableViewDataSource, UIT
         
         // Declare vars to configure the popup
         var title: String = ""
-        var message: String = questions[questionIndex].feedback!
-        var action: String = "Next"
+        let message: String = questions[questionIndex].feedback!
+        let action: String = "Next"
         
         // User has selected an answer
         if questions[questionIndex].correctAnswerIndex! == indexPath.row {
@@ -122,19 +135,25 @@ class ViewController: UIViewController, QuizProtocol, UITableViewDataSource, UIT
             title = "Wrong!"
         }
         
-        
-        
-        // Therefore before we can use resultVC we need to check it isn't nil. If not nil will display it over top of current VC
+        // Display the popup
+        // Before we can use resultVC we need to check it isn't nil. If not nil will display it over top of current VC
         if resultVC != nil {
             
-            present(resultVC!, animated: true) {
-                // Set the message for the popup
-                self.resultVC!.setPopup(withTitle: title, withMessage: message, withAction: action)
+            // let the main thread display the popup
+            DispatchQueue.main.async {
+                self.present(self.resultVC!, animated: true, completion: {
+                    // Set the message for the popup:
+                    self.resultVC!.setPopup(withTitle: title, withMessage: message, withAction: action)
+                })
             }
         }
         
+        
         // Increment questionIndex so we can jump to next question
         questionIndex += 1
+        
+        // Save state
+        StateManager.saveState(numCorrect: numCorrect, questionIndex: questionIndex)
     }
     
     // MARK: ResultViewControllerProtocol methods
@@ -153,7 +172,12 @@ class ViewController: UIViewController, QuizProtocol, UITableViewDataSource, UIT
                 }
             }
             
+            // Increment so the next time the user dismisses the dialog, we go into the next branch of this IF statement
             questionIndex += 1
+            
+            
+            // Clear state
+            StateManager.clearState()
         } else if questionIndex > questions.count {
             
             // Restart the quiz

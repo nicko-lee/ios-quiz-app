@@ -6,10 +6,10 @@
         "feedback": "var is the keyword used to declare a new variable." 
     },
     {
-        "question":"Test question with really long answer to see if it resizes?",
-        "answers":["var", "v", "variableasdfasdfasfadsf asgasgda a gasg asf asga afdlkldafkljafkjfadsljdla falfjal falfjadsjf a aldfalfadlfjalkdfldafjalkfjladkfjdasjfldljkafj"],
-        "correctAnswerIndex": 0,
-        "feedback": "var is the keyword used to declare a new variable."
+        "question":"Test question with really long answer to see if it resizes? Which is the longest answer?",
+        "answers":["Time and tide wait for no man.", "I think therefore I am.", "Supercalifragilisticexpialidocious. Even though the sound of it is something quite atrocious. If you say it loud enough, you'll always sound precocious.             Supercalifragilisticexpialidocious."],
+        "correctAnswerIndex": 2,
+        "feedback": "Supercalifragilisticexpialidocious is known as the longest word in the English language other than antidisestablishmentarianism."
     },
     {
         "question":"What's the keyword for declaring a new constant?",

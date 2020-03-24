@@ -16,6 +16,7 @@
 		AC1B33BB2423789100650DCA /* QuizModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1B33BA2423789100650DCA /* QuizModel.swift */; };
 		AC1B33BD2424739E00650DCA /* QuestionData.json in Resources */ = {isa = PBXBuildFile; fileRef = AC1B33BC2424739D00650DCA /* QuestionData.json */; };
 		AC1B33BF24284C3A00650DCA /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1B33BE24284C3A00650DCA /* ResultViewController.swift */; };
+		AC1B33C12429B29900650DCA /* StateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1B33C02429B29900650DCA /* StateManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		AC1B33BA2423789100650DCA /* QuizModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizModel.swift; sourceTree = "<group>"; };
 		AC1B33BC2424739D00650DCA /* QuestionData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = QuestionData.json; sourceTree = "<group>"; };
 		AC1B33BE24284C3A00650DCA /* ResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
+		AC1B33C02429B29900650DCA /* StateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,8 +68,9 @@
 				AC1B33A8242377F500650DCA /* ViewController.swift */,
 				AC1B33BE24284C3A00650DCA /* ResultViewController.swift */,
 				AC1B33B82423782200650DCA /* Question.swift */,
-				AC1B33BC2424739D00650DCA /* QuestionData.json */,
+				AC1B33C02429B29900650DCA /* StateManager.swift */,
 				AC1B33BA2423789100650DCA /* QuizModel.swift */,
+				AC1B33BC2424739D00650DCA /* QuestionData.json */,
 				AC1B33AA242377F500650DCA /* Main.storyboard */,
 				AC1B33AD2423780300650DCA /* Assets.xcassets */,
 				AC1B33AF2423780300650DCA /* LaunchScreen.storyboard */,
@@ -151,6 +154,7 @@
 				AC1B33BF24284C3A00650DCA /* ResultViewController.swift in Sources */,
 				AC1B33BB2423789100650DCA /* QuizModel.swift in Sources */,
 				AC1B33B92423782200650DCA /* Question.swift in Sources */,
+				AC1B33C12429B29900650DCA /* StateManager.swift in Sources */,
 				AC1B33A9242377F500650DCA /* ViewController.swift in Sources */,
 				AC1B33A7242377F500650DCA /* AppDelegate.swift in Sources */,
 			);
