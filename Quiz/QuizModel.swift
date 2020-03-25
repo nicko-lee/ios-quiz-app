@@ -23,7 +23,7 @@ class QuizModel {
     func getQuestions() {
         
         // Go retrieve data (could be local path or network call)
-        getLocalJsonFile()
+        getRemoteJsonFile()
         
         // When it comes back, call the questionsRetrieved method of the delegate
         // delegate?.questionsRetrieved(questions: [Question]())
@@ -58,6 +58,43 @@ class QuizModel {
     }
     
     func getRemoteJsonFile() {
+        // Get a URL object from a string
+        let stringURL = "https://codewithchris.com/code/QuestionData.json"
+        let url = URL(string: stringURL)
         
+        guard url != nil else {
+            print("Couldn't get a URL object")
+            return
+        }
+        
+        // Get a URLSession object
+        let session = URLSession.shared
+        
+        // Get a DataTask object
+        let dataTask = session.dataTask(with: url!) { (data, response, error) in
+            
+            if error == nil && data != nil {
+                // Create a json decoder
+                let decoder = JSONDecoder()
+                
+                do {
+                    // Try to parse the data
+                    let array = try decoder.decode([Question].self, from: data!)
+                    
+                    // Notify the VC with results by passing the data back to the main thread
+                    DispatchQueue.main.async {
+                        self.delegate?.questionsRetrieved(questions: array)
+                    }
+                } catch {
+                    print("Couldn't parse the json")
+                }
+                
+            }
+    
+        }
+        
+        
+        // Call resume on the DataTask object - this actually kicks off the fetch
+        dataTask.resume()
     }
 }
