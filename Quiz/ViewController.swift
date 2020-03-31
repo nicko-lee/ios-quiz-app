@@ -10,6 +10,12 @@ import UIKit
 
 class ViewController: UIViewController, QuizProtocol, UITableViewDataSource, UITableViewDelegate, ResultViewControllerProtocol {
     
+    @IBOutlet weak var stackViewTrailingConstraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var rootStackView: UIStackView!
+    
+    @IBOutlet weak var stackViewLeadingConstraint: NSLayoutConstraint!
+    
     @IBOutlet weak var questionLabel: UILabel!
     
     @IBOutlet weak var tableView: UITableView!
@@ -54,6 +60,46 @@ class ViewController: UIViewController, QuizProtocol, UITableViewDataSource, UIT
         
         // Display the answers - simply need to tell the table view to reload the data
         tableView.reloadData() // just like what I used in Match App to reload my cards in the collection view. This triggers the table view to ask the VC for data again (i.e. those 2 protocol method calls. Ask for how many rows there are and for each row it is trying to display what cell should it use?)
+        
+        // Animate in the question
+        slideInQuestion()
+    }
+    
+    // MARK: Animation methods
+    
+    func slideInQuestion() {
+        // Set the starting state
+        rootStackView.alpha = 0
+        stackViewLeadingConstraint.constant = 1000
+        stackViewTrailingConstraint.constant = -1000
+        view.layoutIfNeeded() // so that autolayout will update the layout right away. Thiis view is the view of the VC
+        
+        // Animate to the ending state
+        UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: {
+            self.rootStackView.alpha = 1
+            self.stackViewLeadingConstraint.constant = 0
+            self.stackViewTrailingConstraint.constant = 0
+            self.view.layoutIfNeeded()
+            
+        }, completion: nil)
+        
+    }
+    
+    func slideOutQuestion() {
+        // Set the starting state
+        rootStackView.alpha = 1
+        stackViewLeadingConstraint.constant = 0
+        stackViewTrailingConstraint.constant = 0
+        view.layoutIfNeeded()
+        
+        // Animate to the ending state
+        UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseIn, animations: {
+            
+            self.rootStackView.alpha = 0
+            self.stackViewLeadingConstraint.constant = -1000
+            self.view.layoutIfNeeded()
+            
+        }, completion: nil)
     }
 
     // MARK: QuizProtocol method
@@ -134,6 +180,9 @@ class ViewController: UIViewController, QuizProtocol, UITableViewDataSource, UIT
             // Set the title for the popup
             title = "Wrong!"
         }
+        
+        // Slide out question
+        slideOutQuestion()
         
         // Display the popup
         // Before we can use resultVC we need to check it isn't nil. If not nil will display it over top of current VC

@@ -24,7 +24,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="IqC-3q-VEf">
                                 <rect key="frame" x="20" y="44" width="374" height="818"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xCF-nZ-fck">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xCF-nZ-fck">
                                         <rect key="frame" x="20" y="0.0" width="334" height="409"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -94,6 +94,9 @@
                     </view>
                     <connections>
                         <outlet property="questionLabel" destination="xCF-nZ-fck" id="DMb-gf-qBL"/>
+                        <outlet property="rootStackView" destination="IqC-3q-VEf" id="5j7-Uv-Ab8"/>
+                        <outlet property="stackViewLeadingConstraint" destination="h0z-Uq-t4L" id="HLC-5Q-DCZ"/>
+                        <outlet property="stackViewTrailingConstraint" destination="RDn-a1-Adx" id="ARD-TR-Lvw"/>
                         <outlet property="tableView" destination="KcG-ln-QJl" id="X8y-4T-LOj"/>
                     </connections>
                 </viewController>
@@ -111,7 +114,7 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5dU-ZB-9jm" userLabel="DimView">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="anv-zq-mvI" userLabel="DialogView">
                                 <rect key="frame" x="40" y="144" width="334" height="618"/>
